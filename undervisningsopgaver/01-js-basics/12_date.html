@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <p>Hvor gammel er du?</p>
+    <input type="text" id="dinAlder">
+    <p>Hvor gammel er din date?</p>
+    <input type="text" id="datesAlder">
+
+    <button>Klik for at se om i er et match</button>
+    <script>
+        document.querySelector("button").addEventListener("click", udregnReglen)
+
+        function udregnReglen() {
+            let dinAlder = document.querySelector("#dinAlder").value
+            let datesAlder = document.querySelector("#datesAlder").value
+            let reglen = dinAlder / 2 + 7
+
+            if (datesAlder < 15) {
+                console.log("Din date er under 15! du er politianmeldt")
+            } else if (dinAlder < 15) {
+                console.log("Du er for ung til det her")
+            } else if (datesAlder < reglen) {
+                console.log("Din date passer ikke ind i reglenl")
+            } else {
+                console.log("Din date passer ind i din regel")
+            }
+
+
+        }
+
+    </script>
+</body>
