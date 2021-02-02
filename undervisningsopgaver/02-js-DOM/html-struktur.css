@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header,
+footer {
+    text-align: center;
+    border: 1px solid #888;
+}
+
+main {
+    margin: 0 auto;
+    align-items: center;
+}
+
+img {
+    max-width: 100%;
+}
+
+h2 {
+    margin-left: 8vw;
+}
+
+section {
+    display: grid;
+    margin-left: 8vw;
+    margin-right: 8vw;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5vw;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+article {
+    border: 1px solid #888;
+}
+
+footer {
+    margin-top: 5vw;
+}
