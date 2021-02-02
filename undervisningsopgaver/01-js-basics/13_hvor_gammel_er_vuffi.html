@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Den gamle metode</h2>
+        <p>Hvor gammel er din hund i menneske alder</p>
+        <input type="text" id="hundGamleAlder">
+        <button id="gamleMetode">Klik for at se din hunds rigtige alder vha den gamle metode.</button>
+        <h1>Den nye metode</h2>
+            <p>Hvor gammel er din hund i menneske alder?</p>
+            <input type="text" id="hundNyeAlder">
+            <button id="denNyeMetode">Klik for at se din hunds rigtige alder vha den nye metode.</button>
+
+            <script>
+                document.querySelector("#gamleMetode").addEventListener("click", udregnGammelMetode)
+                document.querySelector("#denNyeMetode").addEventListener("click", udregnNyeMetode)
+
+                function udregnGammelMetode() {
+                    let hundGamleAlder = document.querySelector("#hundGamleAlder").value
+                    let resultat = 7 * hundGamleAlder
+                    console.log(resultat)
+                }
+
+                function udregnNyeMetode() {
+                    let hundNyeAlder = document.querySelector("#hundNyeAlder").value
+                    let resultat = 16 * Math.log(hundNyeAlder) + 31
+                    console.log(resultat)
+                }
+
+            </script>
+</body>
