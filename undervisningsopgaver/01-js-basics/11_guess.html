@@ -17,13 +17,15 @@
     <script>
         const randomNumber = Math.round(Math.random() * 20)
         document.querySelector("button").addEventListener("click", guessNumber);
+        let antalGæt = 0;
 
         function guessNumber() {
+            antalGæt++;
             let guess = document.querySelector("#gæt").value;
-            console.log("randomNumber", randomNumber)
+            //            console.log("randomNumber", randomNumber)
             console.log("Dit gæt", guess)
             if (guess == randomNumber) {
-                console.log("du har ret")
+                console.log(`du har ret og har gættet ${antalGæt} gange`)
             } else {
                 console.log("forkert")
             }
