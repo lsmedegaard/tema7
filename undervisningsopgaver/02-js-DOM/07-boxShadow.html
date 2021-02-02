@@ -30,16 +30,29 @@
     </main>
     <footer>This is the footer</footer>
     <script>
-        const article1 = document.querySelector("article");
+        const article = document.querySelector("section article:first-child");
+        const article1 = document.querySelector("section article:nth-child(2)");
+        article.classList.add("box-shadow");
+        article.addEventListener("mouseover", fjernBoxShadow)
+
         article1.classList.add("box-shadow");
-        article1.addEventListener("mouseover", fjernBoxShadow)
+        article1.addEventListener("mouseover", fjernBoxShadow1)
 
         function fjernBoxShadow() {
+            article.classList.remove("box-shadow");
+            article.addEventListener("mouseout", tilføjBoxShadow);
+        }
+
+        function fjernBoxShadow1() {
             article1.classList.remove("box-shadow");
-            article1.addEventListener("mouseout", tilføjBoxShadow);
+            article1.addEventListener("mouseout", tilføjBoxShadow1);
         }
 
         function tilføjBoxShadow() {
+            article.classList.add("box-shadow");
+        }
+
+        function tilføjBoxShadow1() {
             article1.classList.add("box-shadow");
         }
 
