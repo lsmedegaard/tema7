@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            box-sizing: border-box;
+            background-color: #f0ebe4;
+        }
+
+        img {
+            max-width: 100%;
+            width: 330px;
+            height: 200px;
+            box-shadow: 10px 10px 19px -2px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: 10px 10px 19px -2px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 10px 10px 19px -2px rgba(0, 0, 0, 0.5);
+        }
+
+        .data-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-gap: 10px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        article {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section class="data-container"></section>
+    <template>
+        <article class="events">
+            <img src="" alt="">
+            <h3></h3>
+            <p></p>
+
+
+        </article>
+    </template>
+    <script>
+        document.addEventListener("DOMContentLoaded", visEvents);
+
+        let event = [{
+                "billede": "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/W6dOqabNhHKBPXxxKKEZRA84-360.jpg",
+                "navn": "A Calling",
+                "skaber": " af Christian Bengtson",
+            },
+            {
+                "billede": "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/Q8K1pZrOs03Q0IrDkBwGVu5r-360.jpg",
+                "navn": "A Hole In My Heart",
+                "skaber": "af Mees Peijnenburg",
+            },
+            {
+                "billede": "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/hUd4SdGQ8I23ovxWnGtBz4Ck-360.jpg",
+                "navn": "A Place In The Sun - 110 years after the genocide",
+                "skaber": "af Christian Zipfel"
+            },
+            {
+                "billede": "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/Zdt2ODEqSVOkNe8nUaSSu8kd-360.jpg",
+                "navn": "A Tower of Two",
+                "skaber": "af Jacob Krzysztof Glogowski",
+            },
+            {
+                "billede": "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/2iUOgQpixgIQCxyLtY6KiYuU-360.jpg",
+                "navn": "A Worthy Man",
+                "skaber": "af Kristian Håskjold",
+            },
+        ]
+
+        function visEvents() {
+            const container = document.querySelector(".data-container");
+            const eventTemplate = document.querySelector("template");
+
+            event.forEach(events => {
+                let klon = eventTemplate.cloneNode(true).content;
+                klon.querySelector("img").src = events.billede;
+                klon.querySelector("h3").textContent = events.navn;
+                klon.querySelector("p").textContent = events.skaber;
+                container.appendChild(klon);
+            })
+        }
+
+    </script>
+</body>
+
+</html>
