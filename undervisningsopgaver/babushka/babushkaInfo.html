@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        img {
+            transform: scale(0.5);
+            box-shadow: 10px 10px 19px -2px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: 10px 10px 19px -2px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 10px 10px 19px -2px rgba(0, 0, 0, 0.5);
+        }
+
+
+        article {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .billede {
+            margin-top: -160px;
+        }
+
+        /*
+        h2,
+        p {
+        margin-top: -10px;
+
+        }
+*/
+
+        nav,
+        h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            padding: 10px 16px;
+            background-color: #c4c4c4;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .valgt {
+            background-color: #333333;
+            color: white;
+        }
+
+        .detaljer {
+            margin-top: -150px;
+            margin-right: 25vw;
+            margin-left: 25vw;
+        }
+
+        body {
+            background-image: url(madPige.jpg);
+        }
+
+    </style>
+</head>
+
+<body>
+    <button>Tilbage til menuen</button>
+    <article class="ret">
+        <h2 class="navn"></h2>
+        <img src="" alt="" class="billede">
+        <div class="detaljer">
+            <h4>Beskrivelse:</h4>
+            <p class="langInfo"></p>
+            <h4>Oprindelsesregion:</h4>
+            <p class="fra"></p>
+            <h4>Pris:</h4>
+            <h5 class="pris"></h5>
+        </div>
+    </article>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
+        const myHeaders = {
+            "x-apikey": "600ec2fb1346a1524ff12de4"
+        }
+        //        console.log("id", id)
+        document.addEventListener("DOMContentLoaded", hentData)
+
+        async function hentData() {
+            const JSONData = await fetch(`https://babushka-dd8a.restdb.io/rest/menu/${id}`, {
+                headers: myHeaders
+            });
+            ret = await JSONData.json();
+            console.log("Retter", ret)
+            visRet();
+        }
+
+        function visRet() {
+            document.querySelector(".billede").src = medieurl + ret.billede;
+            document.querySelector(".navn").textContent = ret.navn;
+            document.querySelector(".langInfo").textContent = ret.langbeskrivelse;
+            document.querySelector(".fra").textContent = ret.oprindelsesregion;
+            document.querySelector(".pris").textContent = `${ret.pris} kr `;
+            document.querySelector("button").addEventListener("click", tilbage);
+
+
+
+        }
+
+        function tilbage() {
+            history.back();
+
+        }
+
+    </script>
+</body>
+
+</html>

@@ -7,43 +7,67 @@
     <style>
         * {
             box-sizing: border-box;
-            background-color: white;
+
+
+        }
+
+        body {
+            max-width: 100%;
+            margin: auto 0;
+            background-image: url(madPige.jpg);
+        }
+
+        img {
+            width: 72%;
+            height: auto;
+            box-shadow: 10px 10px 19px -2px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: 10px 10px 19px -2px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 10px 10px 19px -2px rgba(0, 0, 0, 0.5);
         }
 
         main {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            grid-gap: 10px;
-            margin: 0 auto;
+            margin: auto;
             padding: 10px;
+            text-align: center;
+
         }
 
         article {
-            border: 2px solid yellow;
-            border-radius: 20px;
-            padding: 10px;
-            margin: 1em;
-
+            padding-top: 30px;
         }
 
-        img {
-            max-width: 100%;
-            border-radius: 20px;
-            */
+        nav,
+        h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
         button {
             border: none;
             outline: none;
+            padding: 10px 16px;
+            background-color: #c4c4c4;
             cursor: pointer;
-            background-color: #363434;
-
+            font-size: 16px;
         }
 
-        .valgt:focus {
-            background-color: white;
+        .valgt {
+            background-color: #333333;
+            color: white;
         }
 
+        header {
+            /*            background-color: red;*/
+            margin: auto 0 0 0;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
     </style>
 </head>
 
@@ -56,7 +80,6 @@
             <button data-kategori="hovedretter">Hovedretter</button>
             <button data-kategori="desserter">Desserter</button>
             <button data-kategori="sideorders">Side-orders</button>
-
         </nav>
 
     </header>
@@ -64,12 +87,12 @@
     </main>
 
     <template>
-        <ul>
+        <article class="ret">
             <img src="" alt="" class="billede">
             <h2 class="navn"></h2>
             <p class="kortInfo"></p>
             <h5 class="pris"></h5>
-        </ul>
+        </article>
     </template>
     <script>
         const url = "https://babushka-dd8a.restdb.io/rest/menu";
@@ -83,7 +106,6 @@
         }
 
         document.addEventListener("DOMContentLoaded", start)
-        document.querySelector(".billede").addEventListener("click", langInformation)
 
 
         function start() {
@@ -94,9 +116,10 @@
 
         }
 
+
         function filtrerRetter() {
             filter = this.dataset.kategori;
-            document.querySelector("button").classList.remove("valgt");
+            document.querySelector(".valgt").classList.remove("valgt");
             this.classList.add("valgt")
             vis();
             header.textContent = this.textContent;
@@ -106,6 +129,7 @@
                 headers: myHeaders
             });
             retter = await JSONData.json();
+            console.log("retter", retter)
             vis();
         }
 
@@ -125,20 +149,16 @@
                     klon.querySelector(".navn").textContent = ret.navn;
                     klon.querySelector(".kortInfo").textContent = ret.kortbeskrivelse;
                     klon.querySelector(".pris").textContent = ret.pris;
+                    klon.querySelector(".ret").addEventListener("click", () => visDetajler(ret));
                     main.appendChild(klon);
 
                 }
             })
         }
 
-        function langInformation() {
-            console.log("her");
 
+        function visDetajler(hvem) {
+            location.href = `babushkaInfo.html?id=${hvem._id}`
         }
-
     </script>
-</body>
-
-</html>
-
-</html>
+</body></html>
